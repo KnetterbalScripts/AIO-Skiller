@@ -26,6 +26,28 @@ DATA.LOGS = {
     SHAFTS = 52
 }
 
+DATA.SANDSTONE = {
+    RED = 23194,
+    CRYSTAL = 32847,
+}
+
+DATA.GLASS = {
+ROBUST = 23193,
+CRYSTAL = 32845
+}
+
+DATA.LEATHER = {
+    LEATHER = 1741,
+    HARDLEATHER = 1743,
+    SPIDERSILK = 25547,
+    GREEN = 1745,
+    BLUE = 2505,
+    RED = 2507,
+    BLACK = 2509,
+    ROYAL = 24374,
+    DINO = 48025,
+    UNDEAD = 56075,
+}
 DATA.FISH = {
     SHRIMP = 317,
     CRAYFISH = 13435,
@@ -58,7 +80,16 @@ DATA.FISH = {
     TIGER_SHARK = 21520,
     SAILFISH = 42249,
 }
-DATA.UNCUTGEMS = {}
+DATA.UNCUTGEMS = {
+    SAPPHIRE = 1623,
+    EMERALD = 1621,
+    RUBY = 1619,
+    DIAMOND = 1617,
+    DRAGONSTONE = 1631,
+    OPAL = 1625,
+    JADE = 1627,
+    TOPAZ = 1629
+}
 
 DATA.CUTGEMS = {
     SAPPHIRE = 1607,
@@ -122,6 +153,12 @@ function DATA.resolve(cfg)
     local selectedArrow = clean(cfg.arrowheadType)
     local bowMaterial1 = clean(cfg.bowMaterial1)
     local bowMaterial2 = clean(cfg.bowMaterial2)
+    local subSkill2 = clean(cfg.subSkill2)
+    local uncut = clean(cfg.uncut)
+    local selectedSandstone = clean(cfg.selectedSandstone)
+    local selectedGlass = clean(cfg.selectedGlass)
+    local selectedLeather = clean(cfg.selectedLeather)
+
 
     local out = {
         selectedSkill = selectedSkill,
@@ -130,7 +167,12 @@ function DATA.resolve(cfg)
         selectedLog = selectedLog and DATA.LOGS[selectedLog] or nil,
         selectedArrow = selectedArrow and DATA.ARROWHEADS[selectedArrow] or nil,
         bowMaterial1 = bowMaterial1,
-        bowMaterial2 = bowMaterial2
+        bowMaterial2 = bowMaterial2,
+        subSkill2 = subSkill2,
+        uncut = uncut and DATA.UNCUTGEMS[uncut] or nil,
+        selectedSandstone = selectedSandstone and DATA.SANDSTONE[selectedSandstone] or nil,
+        selectedGlass = selectedGlass and DATA.GLASS[selectedGlass] or nil,
+        selectedLeather = selectedLeather and DATA.LEATHER[selectedLeather] or nil
     }
 
     return out

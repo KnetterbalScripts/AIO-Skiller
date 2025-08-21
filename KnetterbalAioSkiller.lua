@@ -11,7 +11,6 @@ Author = "Knetterbal"
 ScriptVersion = "1.0"
 ReleaseDate = "21-08-2025"
 
-
 local RES = DATA.resolve()
 
 local selectedSkill = RES.selectedSkill
@@ -21,6 +20,17 @@ local selectedLog = RES.selectedLog
 local selectedArrow = RES.selectedArrow
 local bowMaterial1 = RES.bowMaterial1
 local bowMaterial2 = RES.bowMaterial2
+local subSkill2 = RES.subSkill2
+local uncut = RES.uncut
+local selectedSandstone = RES.selectedSandstone
+local selectedGlass = RES.selectedGlass
+local selectedLeather = RES.selectedLeather
+
+-- === SETTINGS ===--
+local fletchingTable = {125718}
+local cookingRange = {125205}
+local bonfire = {110269}
+local glassMaker = {94067}
 
 -- ==== GUI ====
 local function BuildGUI()
@@ -82,11 +92,11 @@ local function hasMaterials()
 
         elseif subSkill == "STRING" then
             local bowstringId = 1777
-            
+
             local unfShort = bowMaterial1 and DATA.SHORTBOW[bowMaterial1] or nil
             local unfLong = bowMaterial2 and DATA.SHIELDBOW[bowMaterial2] or nil
-            return ((unfShort and findItemInInventory(unfShort)) or (unfLong and findItemInInventory(unfLong)))
-                and findItemInInventory(bowstringId)
+            return ((unfShort and findItemInInventory(unfShort)) or (unfLong and findItemInInventory(unfLong))) and
+                       findItemInInventory(bowstringId)
 
         elseif subSkill == "HEADLESS" then
             return HasItemMin(52, 15) and HasItemMin(314, 15)
@@ -102,7 +112,19 @@ local function hasMaterials()
         return findItemInInventory(selectedLog) ~= nil
 
     elseif selectedSkill == "CRAFTING" then
-        return findItemInInventory(selectedLog) ~= nil
+        if subSkill2 == "CUT" then
+            return findItemInInventory(uncut) ~= nil
+        elseif subSkill2 == "GLASS" then
+            if type(selectedSandstone) ~= "number" then
+                API.logDebug("[hasMaterials] selectedSandstone is not a number! Value: " .. tostring(selectedSandstone))
+            end
+            return findItemInInventory(selectedSandstone) ~= nil
+        elseif subSkill2 == "FLASKS" then
+            return findItemInInventory(selectedGlass) ~= nil
+        elseif subSkill2 == "ARMOR" then
+            return findItemInInventory(selectedLeather) ~= nil
+        end
+
     end
     return false
 end
@@ -111,51 +133,83 @@ local function isInterfaceOpen()
     return API.Compare2874Status(18)
 end
 
-local function loadLastPreset()
-
-    if selectedSkill == "FLETCHING" or selectedSkill == "COOKING" then
-        API.logDebug("Loading last preset")
-        API.DoAction_Object1(0x33, API.OFF_ACT_GeneralObject_route3, {125720, 125734}, 50)
-
-    elseif selectedSkill == "FIREMAKING" then
-
-        API.DoAction_NPC(0x33, API.OFF_ACT_InteractNPC_route4, {19916}, 50)
-        API.logDebug("Loading Firemaking preset")
-
-    end
-end
-
 local function startCraft()
     API.KeyboardPress2(0x20, 100, 50)
 end
 
 local function isBusy()
-    return API.CheckAnim(20) or API.isProcessing()
+    return API.CheckAnim(20) or API.isProcessing() or API.ReadPlayerMovin()
 end
 local function isBurningLogs()
-    return API.CheckAnim(100) or API.isProcessing()
+    return API.CheckAnim(100) or API.isProcessing() or API.ReadPlayerMovin()
 end
 
 local function startWorking()
 
-    if selectedSkill == "COOKING" and not isBusy() then
-        API.DoAction_Object1(0x40, API.OFF_ACT_GeneralObject_route0, {125205}, 50)
-    elseif selectedSkill == "FLETCHING" and not isBusy() then
-        API.DoAction_Object1(0xcd, API.OFF_ACT_GeneralObject_route0, {125718}, 50)
-    elseif selectedSkill == "FIREMAKING" and not isBurningLogs() then
-        API.DoAction_Object1(0x41, API.OFF_ACT_GeneralObject_route0, {110269}, 50)
+    if not isInterfaceOpen() then
+        if selectedSkill == "COOKING" and not isBusy() then
+            API.DoAction_Object1(0x40, API.OFF_ACT_GeneralObject_route0, cookingRange, 50)
+        elseif selectedSkill == "FLETCHING" and not isBusy() then
+            API.DoAction_Object1(0xcd, API.OFF_ACT_GeneralObject_route0, fletchingTable, 50)
+        elseif selectedSkill == "FIREMAKING" and not isBurningLogs() then
+            API.DoAction_Object1(0x41, API.OFF_ACT_GeneralObject_route0, bonfire, 80)
+        elseif selectedSkill == "CRAFTING" then
+            if subSkill2 == "GLASS" and not isBusy() then
+                API.DoAction_Object1(0x3e, API.OFF_ACT_GeneralObject_route0, glassMaker, 50);
+                API.WaitUntilMovingEnds()
+
+            elseif subSkill2 == "FLASKS" and not isBusy() then
+                API.DoAction_Inventory1(selectedGlass, 0, 1, API.OFF_ACT_GeneralInterface_route)
+
+            elseif subSkill2 == "CUT" and not isBusy() then
+
+                API.DoAction_Inventory1(uncut, 0, 1, API.OFF_ACT_GeneralInterface_route)
+            elseif subSkill2 == "ARMOR" and not isBusy() then
+
+                API.DoAction_Inventory1(selectedLeather, 0, 1, API.OFF_ACT_GeneralInterface_route)
+
+            end
+        end
+    else
+        startCraft()
+    end
+
+end
+
+local function loadLastPreset()
+    local bankIds = {125720, 125734, 92692, 125115}
+
+    if selectedSkill == "FLETCHING" or selectedSkill == "COOKING" then
+        API.logDebug("Loading last preset")
+        API.DoAction_Object1(0x33, API.OFF_ACT_GeneralObject_route3, bankIds, 50)
+
+    elseif selectedSkill == "FIREMAKING" then
+        API.logDebug("Loading Firemaking preset")
+        API.DoAction_NPC(0x33, API.OFF_ACT_InteractNPC_route4, {19916}, 50)
+
+    elseif selectedSkill == "CRAFTING" then
+        API.logDebug("Loading last preset")
+        if subSkill2 == "GLASS" and not isBusy() then
+            API.DoAction_Object2(0x33, API.OFF_ACT_GeneralObject_route3, {92692}, 50, WPOINT.new(2153, 3341, 0));
+        elseif (subSkill2 == "FLASKS" or subSkill2 == "CUT" or subSkill2 == "ARMOR") and not isBusy() then
+            API.DoAction_Object1(0x33, API.OFF_ACT_GeneralObject_route3, bankIds, 10)
+
+        end
 
     end
+
 end
 
 -- ==== START ====
 BuildGUI()
 
-API.logDebug(("Knetterbal AIO Skiller started with skill: %s  and sub-skill: %s"):format(tostring(selectedSkill),
-    tostring(subSkill)))
+API.logDebug(("Knetterbal AIO Skiller started with skill: %s  and sub-skill: %s and sub-skill2: %s"):format(tostring(
+    selectedSkill), tostring(subSkill), tostring(subSkill2)))
 API.logDebug(("Selected Fish: %s  Selected Log: %s  Selected Bow: %s  Selected Arrow: %s"):format(
     tostring(selectedFish), tostring(selectedLog), tostring(selectedBow), tostring(selectedArrow)))
 API.logDebug(("BowMaterial1: %s  BowMaterial2: %s"):format(tostring(bowMaterial1), tostring(bowMaterial2)))
+
+API.logDebug(("Selected Sandstone: %s  Selected Glass: %s"):format(tostring(selectedSandstone), tostring(selectedGlass)))
 
 local fails = 0
 
@@ -170,22 +224,18 @@ while API.Read_LoopyLoop() do
     if isStarted() then
 
         if not hasMaterials() then
+            -- API.logDebug("Materials not found, trying to load last preset.")
             loadLastPreset()
 
-            API.RandomSleep2(500, 700, 800)
+            -- API.RandomSleep2(500, 700, 800)
             fails = fails + 1
-            if fails > 4 then
-                API.logDebug("Failed to find materials 3 times, stopping script.")
+            if fails > 5 then
+                -- API.logDebug("Failed to find materials 3 times, stopping script.")
                 API.Write_LoopyLoop(false)
             end
         else
-
+            -- API.logDebug("Materials found, continuing.")
             fails = 0
-        end
-        if isInterfaceOpen() then
-            API.RandomSleep2(100, 50, 100)
-            startCraft()
-        else
             startWorking()
             API.RandomSleep2(1000, 500, 1000)
         end

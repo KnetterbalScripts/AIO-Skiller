@@ -3,7 +3,7 @@
 
 -- Main skill tab
 SM:AddTab("Skill")
-SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING"}, "FLETCHING")
+SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING","CRAFTING"}, "FLETCHING")
 
 -- Fletching tab 
 SM:AddTab("Fletching")
@@ -20,4 +20,12 @@ SM:Dropdown("Fish Type", "fishType", {"NONE", "SHRIMP", "CRAYFISH", "SARDINE", "
 -- Firemaking tab
 SM:AddTab("Firemaking")
 SM:Dropdown("Log Type", "logType", {"NONE", "NORMAL", "OAK", "WILLOW", "MAPLE", "YEW", "MAGIC"}, "NONE")
+
+SM:AddTab("Crafting")
+SM:Dropdown("Sub Skill", "subSkill2", {"NONE", "CUT", "GLASS","FLASKS","ARMOR"}, "NONE")
+SM:Dropdown("Sandstone", "selectedSandstone", {"NONE", "RED", "CRYSTAL"}, "NONE")
+SM:Dropdown("glass", "selectedGlass", {"NONE", "ROBUST", "CRYSTAL"}, "NONE")
+SM:Dropdown("Uncut gem", "uncut", {"NONE", "SAPPHIRE", "EMERALD", "RUBY", "DIAMOND", "DRAGONSTONE", "OPAL", "JADE", "TOPAZ"}, "NONE")
+SM:Dropdown("Leather", "selectedLeather", {"NONE", "LEATHER", "HARDLEATHER", "SPIDERSILK", "GREEN", "BLUE", "RED", "BLACK", "ROYAL", "DINO", "UNDEAD"}, "NONE")
+
 
