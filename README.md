@@ -65,28 +65,28 @@ Here you will select stuff that you wanna do
 
 ## How to Use
 
-<img width="140" height="35" alt="image" src="https://github.com/user-attachments/assets/62d52b4b-3242-41c4-97ca-49555610cf47" />
+<img width="140" height="35" alt="image" src="screenshots/folder.png" />
 
 1. Place all files in the folder "Knetter AIO skiller".
 
 
-<img width="286" height="68" alt="image" src="https://github.com/user-attachments/assets/0e733ee8-4111-4bc2-9731-ef57bf40e896" />
+<img width="286" height="68" alt="image" src="screenshots/scriptmanager1.png" />
 
 2. Click `Config`
 
 
 
-<img width="533" height="245" alt="image" src="https://github.com/user-attachments/assets/44dc95f9-8f86-473b-8d02-143781b239c7" />
+<img width="533" height="245" alt="image" src="screenshots/configUI.png" />
 
 3. Choose desired settings
 4. Click `Save & Close` and start the script.
 
-<img width="290" height="76" alt="image" src="https://github.com/user-attachments/assets/d832a234-7cf0-4f57-aadf-b3f92338ebb0" />
+<img width="290" height="76" alt="image" src="screenshots/scriptmanager2.png" />
 
 5.Start the script in the script manager
 
 
-<img width="200" height="123" alt="image" src="https://github.com/user-attachments/assets/e74ca33e-6eea-457b-b43f-d895e9d426f0" />
+<img width="200" height="123" alt="image" src="screenshots/scriptUI.png" />
 
 6.click start/pause in top left corner (script GUI)
 
