@@ -160,14 +160,14 @@ local function startWorking()
 
     if not isInterfaceOpen() then
         if selectedSkill == "COOKING" and not isBusy() then
-            API.DoAction_Object1(0x40, API.OFF_ACT_GeneralObject_route0, cookingRange, 50)
+            Interact:Object("Range", "Cook-at")
         elseif selectedSkill == "FLETCHING" and not isBusy() then
-            API.DoAction_Object1(0xcd, API.OFF_ACT_GeneralObject_route0, fletchingTable, 50)
+            Interact:Object("Fletching workbench", "Use")
         elseif selectedSkill == "FIREMAKING" and not isBurningLogs() then
-            API.DoAction_Object1(0x41, API.OFF_ACT_GeneralObject_route0, bonfire, 80)
+            Interact:Object("Bonfire", "Add logs to")
         elseif selectedSkill == "CRAFTING" then
             if subSkill2 == "GLASS" and not isBusy() then
-                API.DoAction_Object1(0x3e, API.OFF_ACT_GeneralObject_route0, glassMaker, 50);
+                Interact:Object("Robust glass machine", "Fill")
                 API.WaitUntilMovingEnds()
 
             elseif subSkill2 == "FLASKS" and not isBusy() then
@@ -193,18 +193,19 @@ local function loadLastPreset()
 
     if selectedSkill == "FLETCHING" or selectedSkill == "COOKING" then
         API.logDebug("Loading last preset")
-        API.DoAction_Object1(0x33, API.OFF_ACT_GeneralObject_route3, bankIds, 50)
+        Interact:Object("Bank chest", "Load Last Preset from")
+        
 
     elseif selectedSkill == "FIREMAKING" then
         API.logDebug("Loading Firemaking preset")
-        API.DoAction_NPC(0x33, API.OFF_ACT_InteractNPC_route4, {19916}, 50)
+        Interact:NPC("Banker", "Load Last Preset from")
 
     elseif selectedSkill == "CRAFTING" then
         API.logDebug("Loading last preset")
         if subSkill2 == "GLASS" and not isBusy() then
-            API.DoAction_Object2(0x33, API.OFF_ACT_GeneralObject_route3, {92692}, 50, WPOINT.new(2153, 3341, 0));
+            Interact:Object("Bank chest", "Load Last Preset from")
         elseif (subSkill2 == "FLASKS" or subSkill2 == "CUT" or subSkill2 == "ARMOR") and not isBusy() then
-            API.DoAction_Object1(0x33, API.OFF_ACT_GeneralObject_route3, bankIds, 10)
+            Interact:Object("Bank chest", "Load Last Preset from")
 
         end
 
