@@ -58,7 +58,7 @@ Here you will select stuff that you wanna do
 ### Notes
 - For Fletching and Crafting, you **must** select a sub skill for the script to work correctly.
 - If you select `NONE` for any dropdown, that option will be ignored by the script.
-- The script will use your selected options to determine which items to use and which actions to perform.
+
 
 ---
 
