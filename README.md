@@ -26,10 +26,10 @@ Here you will select stuff that you wanna do
 ### Skill Tab
 - **Skill:** Choose the main skill you want to train: `FLETCHING`, `COOKING`, `FIREMAKING`, or `CRAFTING`.
 
-- FLETCHING AND COOKING ARE DONE AT FORT.
-- FIREMAKING IS AT BONFIRE PRIFF.
-- CRAFTING GLASS IS DONE AT PRIFF
-- MAKING FLASKS AT FORT BANK (WORKSHOP)
+- `FLETCHING` AND `COOKING` ARE DONE AT FORT.
+- `FIREMAKING` IS AT BONFIRE PRIFF.
+- `CRAFTING` GLASS IS DONE AT PRIFF
+- MAKING `FLASKS/ CUT GEMS/ CRAFT ARMOR` IS DONE AT AT FORT BANK (WORKSHOP)
 
 ### Notes for Crafting
 - If you want to craft something with multiple options (for example dragonhide bodies), you MUST craft 1 first so the script will keep crafting that item
