@@ -1,2 +1,52 @@
-# LUAscripts
-ME lua scripts
+# Knetterbal AIO Skiller
+
+A simple, extensible RuneScape skilling script for automation, written in Lua. This script supports Fletching, Cooking, and Firemaking, and is designed to be beginner-friendly and easy to expand.
+
+## Configuration UI Explained
+
+When you start the script, a configuration window will appear. Here you can select your desired skill and options:
+
+### Skill Tab
+- **Skill:** Choose the main skill you want to train: `FLETCHING`, `COOKING`, or `FIREMAKING`.
+
+### Fletching Tab
+If you select `FLETCHING` as your skill, you must also select a **Sub Skill**. The available sub skills are:
+- `FLETCH`: Cut logs into unstrung bows.
+- `STRING`: String unstrung bows.
+- `HEADLESS`: Make headless arrows.
+- `ARROWS`: Make arrows from arrow shafts and arrowheads.
+
+Other options for Fletching:
+- **Log Type:** The type of log to use (e.g., `NORMAL`, `OAK`, `WILLOW`, etc.).
+- **Arrowhead Type:** The type of arrowhead to use for making arrows.
+- **Bow Type:** Choose between `SHORTBOW` or `LONGBOW`.
+- **unf shortbows:** The material for unstrung shortbows.
+- **unf longbows:** The material for unstrung longbows.
+
+### Cooking Tab
+- **Fish Type:** Select the type of fish you want to cook.
+
+### Firemaking Tab
+- **Log Type:** Select the type of log you want to burn.
+
+### Notes
+- For Fletching, you **must** select a sub skill for the script to work correctly.
+- If you select `NONE` for any dropdown, that option will be ignored by the script.
+- The script will use your selected options to determine which items to use and which actions to perform.
+
+---
+
+## How to Use
+1. Place all files in the same folder.
+2. Start the script in your RuneScape automation environment.
+3. Configure your desired skill and options in the UI.
+4. Click `Save & Close` and start the script.
+
+---
+
+## Extending
+To add more skills or materials, simply update the `config.lua` and `data.lua` files. The resolver is designed to automatically pick up new options if you follow the same naming conventions.
+
+---
+
+Made with ❤️ by Knetterbal.
