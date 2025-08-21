@@ -34,14 +34,11 @@ Here you will select stuff that you wanna do
 ### Notes for Crafting
 - If you want to craft something with multiple options (for example dragonhide bodies), you MUST craft 1 first so the script will keep crafting that item
 
+
 ### Fletching Tab
-- **Sub Skill:** Kies tussen `FLETCH`, `STRING`, `HEADLESS`, of `ARROWS`.
-  - `FLETCH`: Cut logs into unstrung bows.
-  - `STRING`: String unstrung bows.
-  - `HEADLESS`: Make headless arrows.
-  - `ARROWS`: Make arrows from arrow shafts and arrowheads.
-- **Log Type:** Select the type of log to use (e.g., `NORMAL`, `OAK`, `WILLOW`, etc.).
-- **Arrowhead Type:** Select the type of arrowhead to use for making arrows.
+- **Sub Skill:** Select from `FLETCH`, `STRING`, `HEADLESS`, or `ARROWS`.
+- **Log Type:** Select the type of log to use.
+- **Arrowhead Type:** Select the type of arrowhead to use.
 - **unf shortbows:** Select the type of unstrung shortbows.
 - **unf longbows:** Select the type of unstrung longbows.
 
@@ -52,11 +49,7 @@ Here you will select stuff that you wanna do
 - **Log Type:** Select the type of log you want to burn.
 
 ### Crafting Tab
-- **Sub Skill:** Choose between `CUT`, `GLASS`, `FLASKS`, or `ARMOR`.
-  - `CUT`: Cut uncut gems.
-  - `GLASS`: Make glass items from sandstone.
-  - `FLASKS`: Make flasks from glass.
-  - `ARMOR`: Craft armor from leather.
+- **Sub Skill:** Select from `CUT`, `GLASS`, `FLASKS`, or `ARMOR`.
 - **Sandstone:** Select the type of sandstone for glassmaking.
 - **Glass:** Select the type of glass for flask making.
 - **Uncut gem:** Select the type of gem to cut.
