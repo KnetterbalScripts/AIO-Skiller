@@ -81,6 +81,15 @@ Here you will select stuff that you wanna do
 3. Choose desired settings
 4. Click `Save & Close` and start the script.
 
+<img width="290" height="76" alt="image" src="https://github.com/user-attachments/assets/d832a234-7cf0-4f57-aadf-b3f92338ebb0" />
+
+5.Start the script in the script manager
+
+
+<img width="200" height="123" alt="image" src="https://github.com/user-attachments/assets/e74ca33e-6eea-457b-b43f-d895e9d426f0" />
+
+6.click start/pause in top left corner (script GUI)
+
 
 ---
 
