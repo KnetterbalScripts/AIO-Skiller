@@ -117,9 +117,6 @@ local function hasMaterials()
         if subSkill2 == "CUT" then
             return findItemInInventory(uncut) ~= nil
         elseif subSkill2 == "GLASS" then
-            if type(selectedSandstone) ~= "number" then
-                API.logDebug("[hasMaterials] selectedSandstone is not a number! Value: " .. tostring(selectedSandstone))
-            end
             return findItemInInventory(selectedSandstone) ~= nil
         elseif subSkill2 == "FLASKS" then
             return findItemInInventory(selectedGlass) ~= nil
