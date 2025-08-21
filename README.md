@@ -37,7 +37,8 @@ Other options for Fletching:
 Start the script in your RuneScape automation environment.
 ## How to Use
 
-<img width="607" height="32" alt="image" src="https://github.com/user-attachments/assets/2fa9cf1b-01af-42f8-9b5b-140318e74e68" />
+<img width="140" height="35" alt="image" src="https://github.com/user-attachments/assets/62d52b4b-3242-41c4-97ca-49555610cf47" />
+
 
 
 name folder : "Knetter AIO skiller"
@@ -54,6 +55,7 @@ name folder : "Knetter AIO skiller"
 To add more skills or materials, simply update the `config.lua` and `data.lua` files. The resolver is designed to automatically pick up new options if you follow the same naming conventions.
 
 ---
+
 
 
 
