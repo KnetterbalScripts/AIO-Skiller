@@ -1,6 +1,5 @@
 # Knetterbal AIO Skiller
 
-A simple, extensible RuneScape skilling script for automation, written in Lua. This script supports Fletching, Cooking, and Firemaking, and is designed to be beginner-friendly and easy to expand.
 
 ## Configuration UI Explained
 
@@ -20,8 +19,8 @@ Other options for Fletching:
 - **Log Type:** The type of log to use (e.g., `NORMAL`, `OAK`, `WILLOW`, etc.).
 - **Arrowhead Type:** The type of arrowhead to use for making arrows.
 - **Bow Type:** Choose between `SHORTBOW` or `LONGBOW`.
-- **unf shortbows:** The material for unstrung shortbows.
-- **unf longbows:** The material for unstrung longbows.
+- **unf shortbows:** The id of the unstrung shortbows.
+- **unf longbows:** The id of the for unstrung longbows.
 
 ### Cooking Tab
 - **Fish Type:** Select the type of fish you want to cook.
@@ -35,12 +34,15 @@ Other options for Fletching:
 - The script will use your selected options to determine which items to use and which actions to perform.
 
 ---
-
+Start the script in your RuneScape automation environment.
 ## How to Use
-1. Place all files in the same folder.
-2. Start the script in your RuneScape automation environment.
-3. Configure your desired skill and options in the UI.
-4. Click `Save & Close` and start the script.
+
+<img width="607" height="32" alt="image" src="https://github.com/user-attachments/assets/2fa9cf1b-01af-42f8-9b5b-140318e74e68" />
+name folder : "Knetter AIO skiller"
+1. Place all files in this folder folder.
+2. Configure your desired skill and options in the UI.
+3. Click `Save & Close` and start the script.
+4. Start the script in your RuneScape automation environment.
 
 ---
 
@@ -49,4 +51,5 @@ To add more skills or materials, simply update the `config.lua` and `data.lua` f
 
 ---
 
-Made with ❤️ by Knetterbal.
+
+
