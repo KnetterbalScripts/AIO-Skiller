@@ -9,7 +9,13 @@ When you start the script, a configuration window will appear. Here you can sele
 ### Skill Tab
 - **Skill:** Choose the main skill you want to train: `FLETCHING`, `COOKING`, or `FIREMAKING`.
 
+- FLETCHING AND COOKING ARE DONE AT FORT.
+- FIREMAKING IS AT BONFIRE PRIFF
+
+
 ### Fletching Tab
+
+
 If you select `FLETCHING` as your skill, you must also select a **Sub Skill**. The available sub skills are:
 - `FLETCH`: Cut logs into unstrung bows.
 - `STRING`: String unstrung bows.
