@@ -68,8 +68,18 @@ Here you will select stuff that you wanna do
 <img width="140" height="35" alt="image" src="https://github.com/user-attachments/assets/62d52b4b-3242-41c4-97ca-49555610cf47" />
 
 1. Place all files in the folder "Knetter AIO skiller".
-2. Configure your desired skill and options in the UI.
-3. Click `Save & Close` and start the script.
+
+
+<img width="286" height="68" alt="image" src="https://github.com/user-attachments/assets/0e733ee8-4111-4bc2-9731-ef57bf40e896" />
+
+2. Click `Config`
+
+
+
+<img width="533" height="245" alt="image" src="https://github.com/user-attachments/assets/44dc95f9-8f86-473b-8d02-143781b239c7" />
+
+3. Choose desired settings
+4. Click `Save & Close` and start the script.
 
 
 ---
