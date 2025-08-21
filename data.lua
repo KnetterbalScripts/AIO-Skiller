@@ -28,20 +28,35 @@ DATA.LOGS = {
 
 DATA.FISH = {
     SHRIMP = 317,
+    CRAYFISH = 13435,
+    SARDINE = 327,
+    HERRING = 345,
     ANCHOVIES = 321,
+    MACKEREL = 353,
     TROUT = 335,
+    COD = 341,
+    PIKE = 349,
     SALMON = 331,
+    SLIMY_EEL = 3379,
+    RAINBOW_FISH = 10138,
     TUNA = 359,
-    SWORDFISH = 371,
+    KARAMBWAN = 3142,
+    CAVE_EEL = 5001,
     LOBSTER = 377,
     BASS = 363,
+    SWORDFISH = 371,
+    MONKFISH = 7944,
+    DESERT_SOLE = 40287,
+    CATFISH = 40289,
+    BELTFISH = 40291,
     SHARK = 383,
+    SEA_TURTLE = 395,
     MANTA_RAY = 389,
-    KARAMBWAN = 3142,
-    KARAMBWANJI = 3153,
+    GREAT_WHITE_SHARK = 34727,
     CAVEFISH = 15264,
     ROCKTAIL = 15270,
-    SAILFISH = 42249
+    TIGER_SHARK = 21520,
+    SAILFISH = 42249,
 }
 DATA.UNCUTGEMS = {}
 
@@ -86,7 +101,7 @@ DATA.SHIELDBOW = {
 
 
 
--- === Simpele config-resolver direct in DATA ===
+-- Config data and material data resolve
 local function clean(s)
     if type(s) ~= "string" then return nil end
     s = s:gsub("%s+", "_"):upper()
@@ -104,24 +119,19 @@ function DATA.resolve(cfg)
     local subSkill = clean(cfg.subSkill)
     local selectedFish = clean(cfg.fishType)
     local selectedLog = clean(cfg.logType)
-    local bowStyle = clean(cfg.bowType)
     local selectedArrow = clean(cfg.arrowheadType)
     local bowMaterial1 = clean(cfg.bowMaterial1)
+    local bowMaterial2 = clean(cfg.bowMaterial2)
 
     local out = {
         selectedSkill = selectedSkill,
         subSkill = subSkill,
         selectedFish = selectedFish and DATA.FISH[selectedFish] or nil,
         selectedLog = selectedLog and DATA.LOGS[selectedLog] or nil,
-        bowStyle = bowStyle,
-        selectedArrow = selectedArrow and DATA.ARROWHEADS[selectedArrow] or nil
+        selectedArrow = selectedArrow and DATA.ARROWHEADS[selectedArrow] or nil,
+        bowMaterial1 = bowMaterial1,
+        bowMaterial2 = bowMaterial2
     }
-
-    if bowStyle and bowMaterial1 and DATA[bowStyle] and DATA[bowStyle][bowMaterial1] then
-        out.selectedBow = DATA[bowStyle][bowMaterial1]
-    else
-        out.selectedBow = nil
-    end
 
     return out
 end

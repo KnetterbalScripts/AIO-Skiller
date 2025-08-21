@@ -18,9 +18,9 @@ local selectedSkill = RES.selectedSkill
 local subSkill = RES.subSkill
 local selectedFish = RES.selectedFish
 local selectedLog = RES.selectedLog
-local selectedBow = RES.selectedBow
 local selectedArrow = RES.selectedArrow
-local bowStyle = RES.bowStyle
+local bowMaterial1 = RES.bowMaterial1
+local bowMaterial2 = RES.bowMaterial2
 
 -- ==== GUI ====
 local function BuildGUI()
@@ -82,7 +82,11 @@ local function hasMaterials()
 
         elseif subSkill == "STRING" then
             local bowstringId = 1777
-            return findItemInInventory(selectedBow) and findItemInInventory(bowstringId)
+            
+            local unfShort = bowMaterial1 and DATA.SHORTBOW[bowMaterial1] or nil
+            local unfLong = bowMaterial2 and DATA.SHIELDBOW[bowMaterial2] or nil
+            return ((unfShort and findItemInInventory(unfShort)) or (unfLong and findItemInInventory(unfLong)))
+                and findItemInInventory(bowstringId)
 
         elseif subSkill == "HEADLESS" then
             return HasItemMin(52, 15) and HasItemMin(314, 15)
@@ -151,7 +155,7 @@ API.logDebug(("Knetterbal AIO Skiller started with skill: %s  and sub-skill: %s"
     tostring(subSkill)))
 API.logDebug(("Selected Fish: %s  Selected Log: %s  Selected Bow: %s  Selected Arrow: %s"):format(
     tostring(selectedFish), tostring(selectedLog), tostring(selectedBow), tostring(selectedArrow)))
-API.logDebug(("Bow Style: %s  Bowstring ID: %s"):format(tostring(bowStyle), tostring(bowstringId)))
+API.logDebug(("BowMaterial1: %s  BowMaterial2: %s"):format(tostring(bowMaterial1), tostring(bowMaterial2)))
 
 local fails = 0
 
