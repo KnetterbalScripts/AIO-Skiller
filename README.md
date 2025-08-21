@@ -65,28 +65,28 @@ Here you will select stuff that you wanna do
 
 ## How to Use
 
-<img width="140" height="35" alt="image" src="screenshots/folder" />
+<img width="140" height="35" alt="image" src="screenshots/folder.png" />
 
 1. Place all files in the folder "Knetter AIO skiller".
 
 
-<img width="286" height="68" alt="image" src="screenshots/scriptmanager1" />
+<img width="286" height="68" alt="image" src="screenshots/scriptmanager1.png" />
 
 2. Click `Config`
 
 
 
-<img width="533" height="245" alt="image" src="screenshots/configUI" />
+<img width="533" height="245" alt="image" src="screenshots/configUI.png" />
 
 3. Choose desired settings
 4. Click `Save & Close` and start the script.
 
-<img width="290" height="76" alt="image" src="screenshots/scriptmanager2" />
+<img width="290" height="76" alt="image" src="screenshots/scriptmanager2.png" />
 
 5.Start the script in the script manager
 
 
-<img width="200" height="123" alt="image" src="screenshots/scriptUI" />
+<img width="200" height="123" alt="image" src="screenshots/scriptUI.png" />
 
 6.click start/pause in top left corner (script GUI)
 
