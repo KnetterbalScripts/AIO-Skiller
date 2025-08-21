@@ -27,5 +27,6 @@ SM:Dropdown("Sandstone", "selectedSandstone", {"NONE", "RED", "CRYSTAL"}, "NONE"
 SM:Dropdown("glass", "selectedGlass", {"NONE", "ROBUST", "CRYSTAL"}, "NONE")
 SM:Dropdown("Uncut gem", "uncut", {"NONE", "SAPPHIRE", "EMERALD", "RUBY", "DIAMOND", "DRAGONSTONE", "OPAL", "JADE", "TOPAZ"}, "NONE")
 SM:Dropdown("Leather", "selectedLeather", {"NONE", "LEATHER", "HARDLEATHER", "SPIDERSILK", "GREEN", "BLUE", "RED", "BLACK", "ROYAL", "DINO", "UNDEAD"}, "NONE")
+SM:Dropdown("Armor type", "armorType", {"NONE", "VAMBRACES", "BOOTS", "CHAPS", "COIF", "BODY", "SHIELD"}, "NONE")
 
 

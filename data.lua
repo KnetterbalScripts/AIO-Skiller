@@ -158,6 +158,7 @@ function DATA.resolve(cfg)
     local selectedSandstone = clean(cfg.selectedSandstone)
     local selectedGlass = clean(cfg.selectedGlass)
     local selectedLeather = clean(cfg.selectedLeather)
+    local armorType = clean(cfg.armorType)
 
 
     local out = {
@@ -172,7 +173,8 @@ function DATA.resolve(cfg)
         uncut = uncut and DATA.UNCUTGEMS[uncut] or nil,
         selectedSandstone = selectedSandstone and DATA.SANDSTONE[selectedSandstone] or nil,
         selectedGlass = selectedGlass and DATA.GLASS[selectedGlass] or nil,
-        selectedLeather = selectedLeather and DATA.LEATHER[selectedLeather] or nil
+        selectedLeather = selectedLeather and DATA.LEATHER[selectedLeather] or nil,
+        armorType = armorType
     }
 
     return out

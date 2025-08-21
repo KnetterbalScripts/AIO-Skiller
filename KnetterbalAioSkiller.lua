@@ -25,6 +25,7 @@ local uncut = RES.uncut
 local selectedSandstone = RES.selectedSandstone
 local selectedGlass = RES.selectedGlass
 local selectedLeather = RES.selectedLeather
+local armorType = RES.armorType
 
 -- === SETTINGS ===--
 local fletchingTable = {125718}
@@ -102,7 +103,7 @@ local function hasMaterials()
             return HasItemMin(52, 15) and HasItemMin(314, 15)
 
         elseif subSkill == "ARROWS" then
-            return HasItemMin(53, 15) and (selectedArrow and HasItemMin(selectedArrow, 15))
+            return HasItemMin(53, 15) and HasItemMin(selectedArrow, 15)
         end
 
     elseif selectedSkill == "COOKING" then
@@ -112,6 +113,7 @@ local function hasMaterials()
         return findItemInInventory(selectedLog) ~= nil
 
     elseif selectedSkill == "CRAFTING" then
+        local threadId = 1734
         if subSkill2 == "CUT" then
             return findItemInInventory(uncut) ~= nil
         elseif subSkill2 == "GLASS" then
@@ -121,8 +123,18 @@ local function hasMaterials()
             return findItemInInventory(selectedSandstone) ~= nil
         elseif subSkill2 == "FLASKS" then
             return findItemInInventory(selectedGlass) ~= nil
+
         elseif subSkill2 == "ARMOR" then
-            return findItemInInventory(selectedLeather) ~= nil
+            if armorType == "VAMBRACES" and armorType == "BOOTS" then
+                return (findItemInInventory(selectedLeather) and findItemInInventory(threadId)) ~= nil
+            elseif armorType == "CHAPS" and armorType == "COIF" then
+                return HasItemMin(selectedLeather,2) and findItemInInventory(threadId) ~= nil
+            elseif armorType == "BODY" then
+                return HasItemMin(selectedLeather,3) and findItemInInventory(threadId) ~= nil
+            elseif armorType == "SHIELD" then
+                return HasItemMin(selectedLeather, 4) and findItemInInventory(threadId) ~= nil
+            end
+            
         end
 
     end
