@@ -31,8 +31,8 @@ Here you will select stuff that you wanna do
 - `CRAFTING` GLASS IS DONE AT PRIFF
 - MAKING `FLASKS/ CUT GEMS/ CRAFT ARMOR` IS DONE AT AT FORT BANK (WORKSHOP)
 
-### Notes for Crafting
-- If you want to craft something with multiple options (for example dragonhide bodies), you MUST craft 1 first so the script will keep crafting that item
+### Notes for Crafting/Fletching
+- If you want to craft something with multiple options (for example dragonhide bodies,Arrow shafts or a certain bow ), you MUST craft 1 first so the script will keep crafting that item
 
 
 ### Fletching Tab
