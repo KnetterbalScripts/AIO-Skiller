@@ -43,7 +43,7 @@ Here you will select stuff that you wanna do
 - **unf longbows:** Select the type of unstrung longbows.
 
 ### Cooking Tab
-- **Fish Type:** Select the type of fish you want to cook.
+- **Fish Type:** Select the type of fish you want to cook .
 
 ### Firemaking Tab
 - **Log Type:** Select the type of log you want to burn.
