@@ -5,7 +5,7 @@
 SM:AddTab("Skill")
 SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING"}, "FLETCHING")
 
--- Fletching tab (let op: subSkill is verplicht voor fletching!)
+-- Fletching tab 
 SM:AddTab("Fletching")
 SM:Dropdown("Sub Skill", "subSkill", {"NONE", "FLETCH", "STRING", "HEADLESS", "ARROWS"}, "NONE")
 SM:Dropdown("Log Type", "logType", {"NONE", "NORMAL", "OAK", "WILLOW", "MAPLE", "YEW", "MAGIC"}, "NONE")
