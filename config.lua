@@ -3,7 +3,7 @@
 
 -- Main skill tab
 SM:AddTab("Skill")
-SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING","CRAFTING"}, "FLETCHING")
+SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING","CRAFTING", "DIVINATION"}, "FLETCHING")
 
 -- Fletching tab 
 SM:AddTab("Fletching")
@@ -21,6 +21,7 @@ SM:Dropdown("Fish Type", "fishType", {"NONE", "SHRIMP", "CRAYFISH", "SARDINE", "
 SM:AddTab("Firemaking")
 SM:Dropdown("Log Type", "logType", {"NONE", "NORMAL", "OAK", "WILLOW", "MAPLE", "YEW", "MAGIC"}, "NONE")
 
+-- Crafting tab
 SM:AddTab("Crafting")
 SM:Dropdown("Sub Skill", "subSkill2", {"NONE", "CUT", "GLASS","FLASKS","ARMOR"}, "NONE")
 SM:Dropdown("Sandstone", "selectedSandstone", {"NONE", "RED", "CRYSTAL"}, "NONE")
@@ -29,4 +30,8 @@ SM:Dropdown("Uncut gem", "uncut", {"NONE", "SAPPHIRE", "EMERALD", "RUBY", "DIAMO
 SM:Dropdown("Leather", "selectedLeather", {"NONE", "LEATHER", "HARDLEATHER", "SPIDERSILK", "GREEN", "BLUE", "RED", "BLACK", "ROYAL", "DINO", "UNDEAD"}, "NONE")
 SM:Dropdown("Armor type", "armorType", {"NONE", "VAMBRACES", "BOOTS", "CHAPS", "COIF", "BODY", "SHIELD"}, "NONE")
 
-
+-- Divination tab
+SM:AddTab("Divination Porters")
+SM:Dropdown("Divination Type for porters", "EnergyType", {"NONE", "VIBRANT", "RADIANT", "LUMINOUS","INCANDESCENT"}, "NONE")
+SM:Dropdown("Necklace Type", "necklaceType", {"NONE", "EMERALD", "RUBY", "DIAMOND","DRAGONSTONE"}, "NONE")
+SM:Dropdown("Porter Type", "porterType", {"NONE", "IV", "V", "VI","VII"}, "NONE")

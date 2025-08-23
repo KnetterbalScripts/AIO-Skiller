@@ -26,12 +26,11 @@ local selectedSandstone = RES.selectedSandstone
 local selectedGlass = RES.selectedGlass
 local selectedLeather = RES.selectedLeather
 local armorType = RES.armorType
+local EnergyType = RES.EnergyType
+local necklaceType = RES.necklaceType
+local porterType = RES.porterType
 
--- === SETTINGS ===--
-local fletchingTable = {125718}
-local cookingRange = {125205}
-local bonfire = {110269}
-local glassMaker = {94067}
+
 
 -- ==== GUI ====
 local function BuildGUI()
@@ -86,58 +85,6 @@ local function HasItemMin(item, min)
     return amount >= min
 end
 
-local function hasMaterials()
-    if selectedSkill == "FLETCHING" then
-        if subSkill == "FLETCH" then
-            return findItemInInventory(selectedLog) ~= nil
-
-        elseif subSkill == "STRING" then
-            local bowstringId = 1777
-
-            local unfShort = bowMaterial1 and DATA.SHORTBOW[bowMaterial1] or nil
-            local unfLong = bowMaterial2 and DATA.SHIELDBOW[bowMaterial2] or nil
-            return ((unfShort and findItemInInventory(unfShort)) or (unfLong and findItemInInventory(unfLong))) and
-                       findItemInInventory(bowstringId)
-
-        elseif subSkill == "HEADLESS" then
-            return HasItemMin(52, 15) and HasItemMin(314, 15)
-
-        elseif subSkill == "ARROWS" then
-            return HasItemMin(53, 15) and HasItemMin(selectedArrow, 15)
-        end
-
-    elseif selectedSkill == "COOKING" then
-        return findItemInInventory(selectedFish) ~= nil
-
-    elseif selectedSkill == "FIREMAKING" then
-        return findItemInInventory(selectedLog) ~= nil
-
-    elseif selectedSkill == "CRAFTING" then
-        local threadId = 1734
-        if subSkill2 == "CUT" then
-            return findItemInInventory(uncut) ~= nil
-        elseif subSkill2 == "GLASS" then
-            return findItemInInventory(selectedSandstone) ~= nil
-        elseif subSkill2 == "FLASKS" then
-            return findItemInInventory(selectedGlass) ~= nil
-
-        elseif subSkill2 == "ARMOR" then
-            if armorType == "VAMBRACES" and armorType == "BOOTS" then
-                return (findItemInInventory(selectedLeather) and findItemInInventory(threadId)) ~= nil
-            elseif armorType == "CHAPS" and armorType == "COIF" then
-                return HasItemMin(selectedLeather,2) and findItemInInventory(threadId) ~= nil
-            elseif armorType == "BODY" then
-                return HasItemMin(selectedLeather,3) and findItemInInventory(threadId) ~= nil
-            elseif armorType == "SHIELD" then
-                return HasItemMin(selectedLeather, 4) and findItemInInventory(threadId) ~= nil
-            end
-            
-        end
-
-    end
-    return false
-end
-
 local function isInterfaceOpen()
     return API.Compare2874Status(18)
 end
@@ -153,37 +100,133 @@ local function isBurningLogs()
     return API.CheckAnim(100) or API.isProcessing() or API.ReadPlayerMovin()
 end
 
-local function startWorking()
 
-    if not isInterfaceOpen() then
-        if selectedSkill == "COOKING" and not isBusy() then
-            Interact:Object("Range", "Cook-at")
-        elseif selectedSkill == "FLETCHING" and not isBusy() then
-            Interact:Object("Fletching workbench", "Use")
-        elseif selectedSkill == "FIREMAKING" and not isBurningLogs() then
-            Interact:Object("Bonfire", "Add logs to")
-        elseif selectedSkill == "CRAFTING" then
-            if subSkill2 == "GLASS" and not isBusy() then
-                Interact:Object("Robust glass machine", "Fill")
-                API.WaitUntilMovingEnds()
+local function hasMaterials()
+    local threadId   = 1734
+    local bowstringId = 1777
 
-            elseif subSkill2 == "FLASKS" and not isBusy() then
-                API.DoAction_Inventory1(selectedGlass, 0, 1, API.OFF_ACT_GeneralInterface_route)
 
-            elseif subSkill2 == "CUT" and not isBusy() then
+    local fletchingCases = {
+        FLETCH = function()
+            return findItemInInventory(selectedLog) ~= nil
+        end,
+        STRING = function()
+            local unfShort = bowMaterial1
+            local unfLong  = bowMaterial2
+            return ((unfShort and findItemInInventory(unfShort)) or
+                    (unfLong  and findItemInInventory(unfLong))) 
+                    and findItemInInventory(bowstringId)
+        end,
+        HEADLESS = function()
+            return HasItemMin(52, 15) and HasItemMin(314, 15)
+        end,
+        ARROWS = function()
+            return HasItemMin(53, 15) and HasItemMin(selectedArrow, 15)
+        end,
+    }
 
-                API.DoAction_Inventory1(uncut, 0, 1, API.OFF_ACT_GeneralInterface_route)
-            elseif subSkill2 == "ARMOR" and not isBusy() then
 
-                API.DoAction_Inventory1(selectedLeather, 0, 1, API.OFF_ACT_GeneralInterface_route)
-
-            end
+    local craftingCases = {
+        CUT    = function() return findItemInInventory(uncut) ~= nil end,
+        GLASS  = function() return findItemInInventory(selectedSandstone) ~= nil end,
+        FLASKS = function() return findItemInInventory(selectedGlass) ~= nil end,
+        ARMOR  = function()
+            local armorReqs = {
+                VAMBRACES = function() return findItemInInventory(selectedLeather) and findItemInInventory(threadId) end,
+                BOOTS     = function() return findItemInInventory(selectedLeather) and findItemInInventory(threadId) end,
+                CHAPS     = function() return HasItemMin(selectedLeather,2) and findItemInInventory(threadId) end,
+                COIF      = function() return HasItemMin(selectedLeather,2) and findItemInInventory(threadId) end,
+                BODY      = function() return HasItemMin(selectedLeather,3) and findItemInInventory(threadId) end,
+                SHIELD    = function() return HasItemMin(selectedLeather,4) and findItemInInventory(threadId) end,
+            }
+            return armorReqs[armorType] and armorReqs[armorType]() or false
         end
-    else
-        startCraft()
+    }
+
+
+    local skillCases = {
+        FLETCHING  = function() return fletchingCases[subSkill] and fletchingCases[subSkill]() or false end,
+        COOKING    = function() return findItemInInventory(selectedFish) ~= nil end,
+        FIREMAKING = function() return findItemInInventory(selectedLog) ~= nil end,
+        CRAFTING   = function() return craftingCases[subSkill2] and craftingCases[subSkill2]() or false end,
+        DIVINATION = function()
+            local reqs = {
+                IV  = 45,
+                V   = 60,
+                VI  = 80,
+                VII = 120
+            }
+            local needed = reqs[porterType]
+            return needed and HasItemMin(EnergyType, needed) and findItemInInventory(necklaceType) ~= nil
+        end,
+    }
+
+    return skillCases[selectedSkill] and skillCases[selectedSkill]() or false
+end
+
+
+
+local function startWorking()
+    if isInterfaceOpen() then
+        return startCraft()
     end
 
+    local fns = {
+        COOKING    = function()
+            if not isBusy() then
+                Interact:Object("Range", "Cook-at")
+            end
+        end,
+
+        FLETCHING  = function()
+            if not isBusy() then
+                Interact:Object("Fletching workbench", "Use")
+            end
+        end,
+
+        FIREMAKING = function()
+            if not isBurningLogs() then
+                Interact:Object("Bonfire", "Add logs to")
+            end
+        end,
+
+        DIVINATION = function()
+            if not isBusy() then
+                API.DoAction_Inventory1(EnergyType, 0, 1, API.OFF_ACT_GeneralInterface_route)
+            end
+        end,
+
+        CRAFTING   = function()
+            if isBusy() then return end
+            local subActions = {
+                GLASS  = function()
+                    Interact:Object("Robust glass machine", "Fill")
+                    API.WaitUntilMovingEnds()
+                end,
+                FLASKS = function()
+                    API.DoAction_Inventory1(selectedGlass, 0, 1, API.OFF_ACT_GeneralInterface_route)
+                end,
+                CUT    = function()
+                    API.DoAction_Inventory1(uncut, 0, 1, API.OFF_ACT_GeneralInterface_route)
+                end,
+                ARMOR  = function()
+                    API.DoAction_Inventory1(selectedLeather, 0, 1, API.OFF_ACT_GeneralInterface_route)
+                end,
+            }
+
+            local subFn = subActions[subSkill2]
+            if subFn then
+                subFn()
+            end
+        end,
+    }
+
+    local fn = fns[selectedSkill]
+    if fn then
+        fn()
+    end
 end
+
 
 local function loadLastPreset()
     local bankIds = {125720, 125734, 92692, 125115}
@@ -206,6 +249,10 @@ local function loadLastPreset()
 
         end
 
+    elseif selectedSkill == "DIVINATION" then
+        API.logDebug("Loading last preset")
+        Interact:Object("Bank chest", "Load Last Preset from")
+        
     end
 
 end
@@ -247,7 +294,7 @@ while API.Read_LoopyLoop() do
             -- API.logDebug("Materials found, continuing.")
             fails = 0
             startWorking()
-            API.RandomSleep2(1000, 500, 1000)
+            API.RandomSleep2(500, 700, 800)
         end
 
     end

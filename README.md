@@ -55,6 +55,11 @@ Here you will select stuff that you wanna do
 - **Uncut gem:** Select the type of gem to cut.
 - **Leather:** Select the type of leather for armor crafting.
 
+### Divination Porter Tab
+- **Energy Type:** Select the type of Energy you want to use.
+- **Necklace Type:** Select the type of necklace you need.
+- **Porter Type:** Select the type of porter you want to make.
+
 ### Notes
 - For Fletching and Crafting, you **must** select a sub skill for the script to work correctly.
 - If you select `NONE` for any dropdown, that option will be ignored by the script.

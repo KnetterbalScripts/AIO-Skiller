@@ -1,14 +1,13 @@
 local DATA = {}
 
-DATA.BANK = 
-{
+DATA.BANK = {
     FLETCHING = 125720,
 
     COOKING = 125734
 }
 DATA.STATION = {
     FLETCHING = 125718,
-    
+
     COOKING = 125205,
 
     FIREMAKING = 92885,
@@ -28,12 +27,12 @@ DATA.LOGS = {
 
 DATA.SANDSTONE = {
     RED = 23194,
-    CRYSTAL = 32847,
+    CRYSTAL = 32847
 }
 
 DATA.GLASS = {
-ROBUST = 23193,
-CRYSTAL = 32845
+    ROBUST = 23193,
+    CRYSTAL = 32845
 }
 
 DATA.LEATHER = {
@@ -46,7 +45,7 @@ DATA.LEATHER = {
     BLACK = 2509,
     ROYAL = 24374,
     DINO = 48025,
-    UNDEAD = 56075,
+    UNDEAD = 56075
 }
 DATA.FISH = {
     SHRIMP = 317,
@@ -78,7 +77,7 @@ DATA.FISH = {
     CAVEFISH = 15264,
     ROCKTAIL = 15270,
     TIGER_SHARK = 21520,
-    SAILFISH = 42249,
+    SAILFISH = 42249
 }
 DATA.UNCUTGEMS = {
     SAPPHIRE = 1623,
@@ -100,7 +99,7 @@ DATA.CUTGEMS = {
     OPAL = 1609,
     JADE = 1611,
     TOPAZ = 1613,
-    ENCHANTED_GEM = 4155,
+    ENCHANTED_GEM = 4155
 }
 DATA.ARROWHEADS = {
     BRONZE = 39,
@@ -110,7 +109,7 @@ DATA.ARROWHEADS = {
     ADAMANT = 43,
     RUNE = 44,
     DRAGON = 11237,
-    BROAD = 13278,
+    BROAD = 13278
 
 }
 DATA.SHORTBOW = {
@@ -130,13 +129,29 @@ DATA.SHIELDBOW = {
     MAGIC = 71
 }
 
+DATA.ENERGY = {
+    VIBRANT = 29319,
+    RADIANT = 29322,
+    LUMINOUS = 29323,
+    INCANDESCENT = 29324
+}
 
+DATA.NECKLACE = {
+    EMERALD = 1658,
+    RUBY = 1660,
+    DIAMOND = 1662,
+    DRAGONSTONE = 1664
+}
 
 -- Config data and material data resolve
 local function clean(s)
-    if type(s) ~= "string" then return nil end
+    if type(s) ~= "string" then
+        return nil
+    end
     s = s:gsub("%s+", "_"):upper()
-    if s == "" or s == "NONE" then return nil end
+    if s == "" or s == "NONE" then
+        return nil
+    end
     return s
 end
 
@@ -159,7 +174,9 @@ function DATA.resolve(cfg)
     local selectedGlass = clean(cfg.selectedGlass)
     local selectedLeather = clean(cfg.selectedLeather)
     local armorType = clean(cfg.armorType)
-
+    local EnergyType = clean(cfg.EnergyType)
+    local necklaceType = clean(cfg.necklaceType)
+    local porterType = clean(cfg.porterType)
 
     local out = {
         selectedSkill = selectedSkill,
@@ -167,14 +184,17 @@ function DATA.resolve(cfg)
         selectedFish = selectedFish and DATA.FISH[selectedFish] or nil,
         selectedLog = selectedLog and DATA.LOGS[selectedLog] or nil,
         selectedArrow = selectedArrow and DATA.ARROWHEADS[selectedArrow] or nil,
-        bowMaterial1 = bowMaterial1,
-        bowMaterial2 = bowMaterial2,
+        bowMaterial1 = bowMaterial1 and DATA.SHORTBOW[bowMaterial1] or nil,
+        bowMaterial2 = bowMaterial2 and DATA.SHIELDBOW[bowMaterial2] or nil,
         subSkill2 = subSkill2,
         uncut = uncut and DATA.UNCUTGEMS[uncut] or nil,
         selectedSandstone = selectedSandstone and DATA.SANDSTONE[selectedSandstone] or nil,
         selectedGlass = selectedGlass and DATA.GLASS[selectedGlass] or nil,
         selectedLeather = selectedLeather and DATA.LEATHER[selectedLeather] or nil,
-        armorType = armorType
+        armorType = armorType,
+        EnergyType = EnergyType and DATA.ENERGY[EnergyType] or nil,
+        necklaceType = necklaceType and DATA.NECKLACE[necklaceType] or nil,
+        porterType = porterType
     }
 
     return out
