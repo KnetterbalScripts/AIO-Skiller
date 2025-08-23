@@ -171,90 +171,53 @@ local function startWorking()
         return startCraft()
     end
 
-    local fns = {
-        COOKING    = function()
-            if not isBusy() then
-                Interact:Object("Range", "Cook-at")
-            end
-        end,
-
-        FLETCHING  = function()
-            if not isBusy() then
-                Interact:Object("Fletching workbench", "Use")
-            end
-        end,
-
-        FIREMAKING = function()
-            if not isBurningLogs() then
-                Interact:Object("Bonfire", "Add logs to")
-            end
-        end,
-
-        DIVINATION = function()
-            if not isBusy() then
-                API.DoAction_Inventory1(EnergyType, 0, 1, API.OFF_ACT_GeneralInterface_route)
-            end
-        end,
-
+    local actions = {
+        COOKING    = function() if not isBusy() then Interact:Object("Range", "Cook-at") end end,
+        FLETCHING  = function() if not isBusy() then Interact:Object("Fletching workbench", "Use") end end,
+        FIREMAKING = function() if not isBurningLogs() then Interact:Object("Bonfire", "Add logs to") end end,
+        DIVINATION = function() if not isBusy() then API.DoAction_Inventory1(EnergyType, 0, 1, API.OFF_ACT_GeneralInterface_route) end end,
         CRAFTING   = function()
             if isBusy() then return end
             local subActions = {
-                GLASS  = function()
-                    Interact:Object("Robust glass machine", "Fill")
-                    API.WaitUntilMovingEnds()
-                end,
-                FLASKS = function()
-                    API.DoAction_Inventory1(selectedGlass, 0, 1, API.OFF_ACT_GeneralInterface_route)
-                end,
-                CUT    = function()
-                    API.DoAction_Inventory1(uncut, 0, 1, API.OFF_ACT_GeneralInterface_route)
-                end,
-                ARMOR  = function()
-                    API.DoAction_Inventory1(selectedLeather, 0, 1, API.OFF_ACT_GeneralInterface_route)
-                end,
+                GLASS  = function() Interact:Object("Robust glass machine", "Fill"); API.WaitUntilMovingEnds() end,
+                FLASKS = function() API.DoAction_Inventory1(selectedGlass, 0, 1, API.OFF_ACT_GeneralInterface_route) end,
+                CUT    = function() API.DoAction_Inventory1(uncut, 0, 1, API.OFF_ACT_GeneralInterface_route) end,
+                ARMOR  = function() API.DoAction_Inventory1(selectedLeather, 0, 1, API.OFF_ACT_GeneralInterface_route) end,
             }
-
-            local subFn = subActions[subSkill2]
-            if subFn then
-                subFn()
-            end
+            return subActions[subSkill2] and subActions[subSkill2]()
         end,
     }
 
-    local fn = fns[selectedSkill]
-    if fn then
-        fn()
-    end
+    return actions[selectedSkill] and actions[selectedSkill]()
 end
 
 
+
 local function loadLastPreset()
-    local bankIds = {125720, 125734, 92692, 125115}
-
-    if selectedSkill == "FLETCHING" or selectedSkill == "COOKING" then
-        API.logDebug("Loading last preset")
+    local function loadChest()
         Interact:Object("Bank chest", "Load Last Preset from")
-        
-
-    elseif selectedSkill == "FIREMAKING" then
-        API.logDebug("Loading Firemaking preset")
-        Interact:NPC("Banker", "Load Last Preset from")
-
-    elseif selectedSkill == "CRAFTING" then
-        API.logDebug("Loading last preset")
-        if subSkill2 == "GLASS" and not isBusy() then
-            Interact:Object("Bank chest", "Load Last Preset from")
-        elseif (subSkill2 == "FLASKS" or subSkill2 == "CUT" or subSkill2 == "ARMOR") and not isBusy() then
-            Interact:Object("Bank chest", "Load Last Preset from")
-
-        end
-
-    elseif selectedSkill == "DIVINATION" then
-        API.logDebug("Loading last preset")
-        Interact:Object("Bank chest", "Load Last Preset from")
-        
     end
 
+    local function loadBanker()
+        Interact:NPC("Banker", "Load Last Preset from")
+    end
+
+    local actions = {
+        FLETCHING  = loadChest,
+        COOKING    = loadChest,
+        FIREMAKING = loadBanker,
+        DIVINATION = loadChest,
+        CRAFTING   = function()
+            if isBusy() then return end
+            local subs = { GLASS = loadChest, FLASKS = loadChest, CUT = loadChest, ARMOR = loadChest }
+            return subs[subSkill2] and subs[subSkill2]()
+        end,
+    }
+
+    if actions[selectedSkill] then
+        API.logDebug("Loading last preset")
+        actions[selectedSkill]()
+    end
 end
 
 -- ==== START ====
