@@ -3,7 +3,7 @@
 
 -- Main skill tab
 SM:AddTab("Skill")
-SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING","CRAFTING", "DIVINATION"}, "FLETCHING")
+SM:Dropdown("Skill:", "selectedSkill", {"FLETCHING", "COOKING", "FIREMAKING","CRAFTING", "DIVINATION","HERBLORE"}, "FLETCHING")
 
 -- Fletching tab 
 SM:AddTab("Fletching")
@@ -35,3 +35,8 @@ SM:AddTab("Divination Porters")
 SM:Dropdown("Divination Type for porters", "EnergyType", {"NONE", "VIBRANT", "RADIANT", "LUMINOUS","INCANDESCENT"}, "NONE")
 SM:Dropdown("Necklace Type", "necklaceType", {"NONE", "EMERALD", "RUBY", "DIAMOND","DRAGONSTONE"}, "NONE")
 SM:Dropdown("Porter Type", "porterType", {"NONE", "IV", "V", "VI","VII"}, "NONE")
+
+-- Herblore tab
+SM:AddTab("Herblore")
+SM:Dropdown("Potion Type", "potionType", {"NONE","ATTACK POTION","STRENGTH POTION","DEFENCE POTION","RESTORE POTION","PRAYER POTION","RANGING POTION","MAGIC POTION","SARA BREW","ANTIPOISON","ANTIFIRE","ENERGY POTION","SUPER ATTACK","SUPER STRENGTH","SUPER DEFENCE","SUPER RESTORE","SUPER ANTIPOISON","SUPER ENERGY","SUPER NECROMANCY","EXTREME ATTACK","EXTREME STRENGTH","EXTREME DEFENCE","EXTREME MAGIC","EXTREME RANGING","EXTREME NECROMANCY","OVERLOAD","PRIMAL EXTRACT"}, "NONE")
+

@@ -25,6 +25,43 @@ DATA.LOGS = {
     SHAFTS = 52
 }
 
+DATA.POTIONS = {
+    -- Normale potions
+    ATTACK_POTION      = {91, 221},      -- Guam potion (unf), Eye of newt
+    STRENGTH_POTION    = {95, 225},      -- Tarromin potion (unf), Limpwurt root
+    DEFENCE_POTION     = {93, 948},      -- Marrentill potion (unf), Bear fur
+    RESTORE_POTION     = {97, 223},      -- Harralander potion (unf), Red spiders' eggs
+    PRAYER_POTION      = {99, 231},      -- Ranarr potion (unf), Snape grass
+    RANGING_POTION     = {109, 245},     -- Dwarf weed potion (unf), Wine of Zamorak
+    MAGIC_POTION       = {2483, 3138},   -- Lantadyme potion (unf), Potato cactus
+    SARA_BREW          = {3002, 6693},   -- Toadflax potion (unf), Crushed nest
+    ANTIPOISON         = {93, 235},      -- Marrentill potion (unf), Unicorn horn dust
+    ANTIFIRE           = {2483, 241},    -- Lantadyme potion (unf), Dragon scale dust
+    ENERGY_POTION      = {97, 1975},     -- Harralander potion (unf), Chocolate dust
+
+    -- Super potions
+    SUPER_ATTACK       = {101, 221},     -- Irit potion (unf), Eye of newt
+    SUPER_STRENGTH     = {105, 225},     -- Kwuarm potion (unf), Limpwurt root
+    SUPER_DEFENCE      = {107, 239},     -- Cadantine potion (unf), White berries
+    SUPER_RESTORE      = {3004, 223},    -- Snapdragon potion (unf), Red spiders' eggs
+    SUPER_ANTIPOISON   = {101, 235},     -- Irit potion (unf), Unicorn horn dust
+    SUPER_ENERGY       = {103, 2970},    -- Avantoe potion (unf), Mort myre fungus
+    SUPER_NECROMANCY   = {12181, 37227}, -- Spirit weed potion (unf), Congealed blood
+
+    -- Extreme potions
+    EXTREME_ATTACK     = {261, 145},     -- Clean avantoe, Super attack (3)
+    EXTREME_STRENGTH   = {267, 157},     -- Clean dwarf weed, Super strength (3)
+    EXTREME_DEFENCE    = {2481, 163},    -- Clean lantadyme, Super defence (3)
+    EXTREME_MAGIC      = {3042, 3138},   -- Magic potion (3), Ground mud runes
+    EXTREME_RANGING    = {12539, 169},   -- Grenwall spikes, Ranging potion (3)
+    EXTREME_NECROMANCY = {55318, 55697}, -- Super necromancy (3), Ground miasma rune
+
+    -- Overload/overige
+    OVERLOAD           = {269, 15309, 15313, 15317, 15321, 15325, 55326, 55953}, -- Extreme attack (3), Extreme strength (3), Extreme defence (3), Extreme magic (3), Extreme ranging (3), Extreme necromancy (3), Clean torstol
+    PRIMAL_EXTRACT     = {48966,229}      --Primal pulp  , vial
+    -- Voeg eventueel meer toe!
+}
+
 DATA.SANDSTONE = {
     RED = 23194,
     CRYSTAL = 32847
@@ -177,6 +214,7 @@ function DATA.resolve(cfg)
     local EnergyType = clean(cfg.EnergyType)
     local necklaceType = clean(cfg.necklaceType)
     local porterType = clean(cfg.porterType)
+    local potionType = clean(cfg.potionType)
 
     local out = {
         selectedSkill = selectedSkill,
@@ -194,7 +232,8 @@ function DATA.resolve(cfg)
         armorType = armorType,
         EnergyType = EnergyType and DATA.ENERGY[EnergyType] or nil,
         necklaceType = necklaceType and DATA.NECKLACE[necklaceType] or nil,
-        porterType = porterType
+        porterType = porterType,
+        potionType = potionType and DATA.POTIONS[potionType] or nil
     }
 
     return out

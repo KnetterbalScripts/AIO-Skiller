@@ -29,6 +29,7 @@ local armorType = RES.armorType
 local EnergyType = RES.EnergyType
 local necklaceType = RES.necklaceType
 local porterType = RES.porterType
+local potionType = RES.potionType
 
 
 
@@ -70,6 +71,28 @@ local function findItemInInventory(itemId)
         end
     end
     return nil
+end
+
+local function allItemsInInventory(itemTable)
+    if not itemTable or #itemTable == 0 then
+        API.logDebug("[Herblore] Geen itemTable of lege table!")
+        return false
+    end
+    local inventory = API.ReadInvArrays33()
+    for _, itemId in ipairs(itemTable) do
+        local found = false
+        for i = 1, #inventory do
+            if inventory[i].itemid1 == itemId then
+                found = true
+                break
+            end
+        end
+        if not found then
+            API.logDebug("[Herblore] Ontbrekend ingrediënt: " .. tostring(itemId))
+            return false
+        end
+    end
+    return true
 end
 
 local function HasItemMin(item, min)
@@ -149,6 +172,7 @@ local function hasMaterials()
         COOKING    = function() return findItemInInventory(selectedFish) ~= nil end,
         FIREMAKING = function() return findItemInInventory(selectedLog) ~= nil end,
         CRAFTING   = function() return craftingCases[subSkill2] and craftingCases[subSkill2]() or false end,
+        HERBLORE   = function() return allItemsInInventory(potionType) end,
         DIVINATION = function()
             local reqs = {
                 IV  = 45,
@@ -175,6 +199,7 @@ local function startWorking()
         COOKING    = function() if not isBusy() then Interact:Object("Range", "Cook-at") end end,
         FLETCHING  = function() if not isBusy() then Interact:Object("Fletching workbench", "Use") end end,
         FIREMAKING = function() if not isBurningLogs() then Interact:Object("Bonfire", "Add logs to") end end,
+        HERBLORE  = function() if not isBusy() then Interact:Object("Botanist's workbench", "Mix Potions") end end,
         DIVINATION = function() if not isBusy() then API.DoAction_Inventory1(EnergyType, 0, 1, API.OFF_ACT_GeneralInterface_route) end end,
         CRAFTING   = function()
             if isBusy() then return end
@@ -207,6 +232,7 @@ local function loadLastPreset()
         COOKING    = loadChest,
         FIREMAKING = loadBanker,
         DIVINATION = loadChest,
+        HERBLORE = loadChest,
         CRAFTING   = function()
             if isBusy() then return end
             local subs = { GLASS = loadChest, FLASKS = loadChest, CUT = loadChest, ARMOR = loadChest }
