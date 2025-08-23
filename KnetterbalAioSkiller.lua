@@ -8,7 +8,7 @@ API.SetDrawTrackedSkills(true)
 
 ScriptName = "Knetterbal AIO Skiller"
 Author = "Knetterbal"
-ScriptVersion = "1.2"
+ScriptVersion = "1.1"
 ReleaseDate = "23-08-2025"
 
 local RES = DATA.resolve()
