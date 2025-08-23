@@ -88,7 +88,7 @@ local function allItemsInInventory(itemTable)
             end
         end
         if not found then
-            API.logDebug("[Herblore] Ontbrekend ingrediënt: " .. tostring(itemId))
+           -- API.logDebug("[Herblore] Ontbrekend ingrediënt: " .. tostring(itemId))
             return false
         end
     end
