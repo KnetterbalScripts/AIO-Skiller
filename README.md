@@ -19,6 +19,8 @@
 		* ARMOR: Craft armor from leather
 * **Divination porters**
 
+* **Herblore: Potions**
+
 ## Configuration UI Explained
 
 Before starting the script, you can click the config button.
@@ -32,6 +34,7 @@ Here you will select stuff that you wanna do
 - `CRAFTING` GLASS IS DONE AT PRIFF
 - MAKING `FLASKS/ CUT GEMS/ CRAFT ARMOR` AT FORT BANK (WORKSHOP)
 - `DIVINATION` makes `PORTERS` AT FORT BANK (WORKSHOP)
+- `HERBLORE` makes `POTIONS` AT FORT BOTANIST'S WORKBENCH
 
 ### Notes for Crafting/Fletching
 - If you want to craft something with multiple options (for example dragonhide bodies,Arrow shafts or a certain bow ), you MUST craft 1 first so the script will keep crafting that item
@@ -61,6 +64,10 @@ Here you will select stuff that you wanna do
 - **Energy Type:** Select the type of Energy you want to use.
 - **Necklace Type:** Select the type of necklace you need.
 - **Porter Type:** Select the type of porter you want to make.
+
+### Divination Porter Tab
+- **Potion Type:** Select the type of potion you want to create.
+
 
 ### Notes
 - For Fletching and Crafting, you **must** select a sub skill for the script to work correctly.
