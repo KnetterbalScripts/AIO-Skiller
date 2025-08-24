@@ -27,39 +27,422 @@ DATA.LOGS = {
 
 DATA.POTIONS = {
     -- Normale potions
-    ATTACK_POTION      = {91, 221},      -- Guam potion (unf), Eye of newt
-    STRENGTH_POTION    = {95, 225},      -- Tarromin potion (unf), Limpwurt root
-    DEFENCE_POTION     = {93, 948},      -- Marrentill potion (unf), Bear fur
-    RESTORE_POTION     = {97, 223},      -- Harralander potion (unf), Red spiders' eggs
-    PRAYER_POTION      = {99, 231},      -- Ranarr potion (unf), Snape grass
-    RANGING_POTION     = {109, 245},     -- Dwarf weed potion (unf), Wine of Zamorak
-    MAGIC_POTION       = {2483, 3138},   -- Lantadyme potion (unf), Potato cactus
-    SARA_BREW          = {3002, 6693},   -- Toadflax potion (unf), Crushed nest
-    ANTIPOISON         = {93, 235},      -- Marrentill potion (unf), Unicorn horn dust
-    ANTIFIRE           = {2483, 241},    -- Lantadyme potion (unf), Dragon scale dust
-    ENERGY_POTION      = {97, 1975},     -- Harralander potion (unf), Chocolate dust
+    ATTACK_POTION = {{
+        id = 91,
+        amount = 1
+    }, {
+        id = 221,
+        amount = 1
+    }}, -- Guam potion (unf), Eye of newt
+    STRENGTH_POTION = {{
+        id = 95,
+        amount = 1
+    }, {
+        id = 225,
+        amount = 1
+    }}, -- Tarromin potion (unf), Limpwurt root
+    DEFENCE_POTION = {{
+        id = 93,
+        amount = 1
+    }, {
+        id = 948,
+        amount = 1
+    }}, -- Marrentill potion (unf), Bear fur
+    RESTORE_POTION = {{
+        id = 97,
+        amount = 1
+    }, {
+        id = 223,
+        amount = 1
+    }}, -- Harralander potion (unf), Red spiders' eggs
+    PRAYER_POTION = {{
+        id = 99,
+        amount = 1
+    }, {
+        id = 231,
+        amount = 1
+    }}, -- Ranarr potion (unf), Snape grass
+    RANGING_POTION = {{
+        id = 109,
+        amount = 1
+    }, {
+        id = 245,
+        amount = 1
+    }}, -- Dwarf weed potion (unf), Wine of Zamorak
+    MAGIC_POTION = {{
+        id = 2483,
+        amount = 1
+    }, {
+        id = 3138,
+        amount = 1
+    }}, -- Lantadyme potion (unf), Potato cactus
+    SARA_BREW = {{
+        id = 3002,
+        amount = 1
+    }, {
+        id = 6693,
+        amount = 1
+    }}, -- Toadflax potion (unf), Crushed nest
+    ANTIPOISON = {{
+        id = 93,
+        amount = 1
+    }, {
+        id = 235,
+        amount = 1
+    }}, -- Marrentill potion (unf), Unicorn horn dust
+    ANTIFIRE = {{
+        id = 2483,
+        amount = 1
+    }, {
+        id = 241,
+        amount = 1
+    }}, -- Lantadyme potion (unf), Dragon scale dust
+    ENERGY_POTION = {{
+        id = 97,
+        amount = 1
+    }, {
+        id = 1975,
+        amount = 1
+    }}, -- Harralander potion (unf), Chocolate dust
 
     -- Super potions
-    SUPER_ATTACK       = {101, 221},     -- Irit potion (unf), Eye of newt
-    SUPER_STRENGTH     = {105, 225},     -- Kwuarm potion (unf), Limpwurt root
-    SUPER_DEFENCE      = {107, 239},     -- Cadantine potion (unf), White berries
-    SUPER_RESTORE      = {3004, 223},    -- Snapdragon potion (unf), Red spiders' eggs
-    SUPER_ANTIPOISON   = {101, 235},     -- Irit potion (unf), Unicorn horn dust
-    SUPER_ENERGY       = {103, 2970},    -- Avantoe potion (unf), Mort myre fungus
-    SUPER_NECROMANCY   = {12181, 37227}, -- Spirit weed potion (unf), Congealed blood
+    SUPER_ATTACK = {{
+        id = 101,
+        amount = 1
+    }, {
+        id = 221,
+        amount = 1
+    }}, -- Irit potion (unf), Eye of newt
+    SUPER_STRENGTH = {{
+        id = 105,
+        amount = 1
+    }, {
+        id = 225,
+        amount = 1
+    }}, -- Kwuarm potion (unf), Limpwurt root
+    SUPER_DEFENCE = {{
+        id = 107,
+        amount = 1
+    }, {
+        id = 239,
+        amount = 1
+    }}, -- Cadantine potion (unf), White berries
+    SUPER_RESTORE = {{
+        id = 3004,
+        amount = 1
+    }, {
+        id = 223,
+        amount = 1
+    }}, -- Snapdragon potion (unf), Red spiders' eggs
+    SUPER_ANTIPOISON = {{
+        id = 101,
+        amount = 1
+    }, {
+        id = 235,
+        amount = 1
+    }}, -- Irit potion (unf), Unicorn horn dust
+    SUPER_ENERGY = {{
+        id = 103,
+        amount = 1
+    }, {
+        id = 2970,
+        amount = 1
+    }}, -- Avantoe potion (unf), Mort myre fungus
+    SUPER_NECROMANCY = {{
+        id = 12181,
+        amount = 1
+    }, {
+        id = 37227,
+        amount = 1
+    }}, -- Spirit weed potion (unf), Congealed blood
 
     -- Extreme potions
-    EXTREME_ATTACK     = {261, 145},     -- Clean avantoe, Super attack (3)
-    EXTREME_STRENGTH   = {267, 157},     -- Clean dwarf weed, Super strength (3)
-    EXTREME_DEFENCE    = {2481, 163},    -- Clean lantadyme, Super defence (3)
-    EXTREME_MAGIC      = {3042, 3138},   -- Magic potion (3), Ground mud runes
-    EXTREME_RANGING    = {12539, 169},   -- Grenwall spikes, Ranging potion (3)
-    EXTREME_NECROMANCY = {55318, 55697}, -- Super necromancy (3), Ground miasma rune
+    EXTREME_ATTACK = {{
+        id = 261,
+        amount = 1
+    }, {
+        id = 145,
+        amount = 1
+    }}, -- Clean avantoe, Super attack (3)
+    EXTREME_STRENGTH = {{
+        id = 267,
+        amount = 1
+    }, {
+        id = 157,
+        amount = 1
+    }}, -- Clean dwarf weed, Super strength (3)
+    EXTREME_DEFENCE = {{
+        id = 2481,
+        amount = 1
+    }, {
+        id = 163,
+        amount = 1
+    }}, -- Clean lantadyme, Super defence (3)
+    EXTREME_MAGIC = {{
+        id = 3042,
+        amount = 1
+    }, {
+        id = 3138,
+        amount = 1
+    }}, -- Magic potion (3), Ground mud runes
+    EXTREME_RANGING = {{
+        id = 169,
+        amount = 1
+    }, {
+        id = 12539,
+        amount = 5
+    }}, -- super ranging pot (3), grenwall spikes
+    EXTREME_NECROMANCY = {{
+        id = 55318,
+        amount = 1
+    }, {
+        id = 55697,
+        amount = 1
+    }}, -- Super necromancy (3), Ground miasma rune
 
-    -- Overload/overige
-    OVERLOAD           = {269, 15309, 15313, 15317, 15321, 15325, 55326, 55953}, -- Extreme attack (3), Extreme strength (3), Extreme defence (3), Extreme magic (3), Extreme ranging (3), Extreme necromancy (3), Clean torstol
-    PRIMAL_EXTRACT     = {48966,229}      --Primal pulp  , vial
-    -- Voeg eventueel meer toe!
+    -- overige
+    OVERLOAD = {{
+        id = 269,
+        amount = 1
+    }, {
+        id = 15309,
+        amount = 1
+    }, {
+        id = 15313,
+        amount = 1
+    }, {
+        id = 15317,
+        amount = 1
+    }, {
+        id = 15321,
+        amount = 1
+    }, {
+        id = 15325,
+        amount = 1
+    }, {
+        id = 55326,
+        amount = 1
+    }},
+    PRIMAL_EXTRACT = {{
+        id = 48966,
+        amount = 1
+    }, {
+        id = 229,
+        amount = 1
+    }} -- Primal pulp  , vial
+
+}
+
+DATA.COMBINATIONPOTS = {
+    -- WHEN DOING COMBINATION POTS, MAKE SURE YOU HAVE 1 OF THESE IN INVENTORY , {id=32843,amount=1} =  crystal flask
+    AGGROVERLOAD = {{
+        id = 15332,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }, {
+        id = 37971,
+        amount = 1
+    }, {
+        id = 48211,
+        amount = 1
+    }},
+    ELDER_OVERLOAD_POTION = {{
+        id = 21624,
+        amount = 1
+    }, {
+        id = 33210,
+        amount = 1
+    }, {
+        id = 48962,
+        amount = 1
+    }, {
+        id = 55957,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }},
+    ELDER_OVERLOAD_SALVE = {{
+        id = 2434,
+        amount = 1
+    }, {
+        id = 2448,
+        amount = 1
+    }, {
+        id = 2452,
+        amount = 1
+    }, {
+        id = 15304,
+        amount = 1
+    }, {
+        id = 21624,
+        amount = 1
+    }, {
+        id = 21630,
+        amount = 1
+    }, {
+        id = 33222,
+        amount = 1
+    }, {
+        id = 48962,
+        amount = 1
+    }, {
+        id = 49039,
+        amount = 1
+    }, {
+        id = 55958,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }},
+    HOLY_AGGROVERLOAD = {{
+        id = 15332,
+        amount = 1
+    }, {
+        id = 21630,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }, {
+        id = 33246,
+        amount = 1
+    }, {
+        id = 37971,
+        amount = 1
+    }, {
+        id = 43997,
+        amount = 1
+    }, {
+        id = 48239,
+        amount = 1
+    }},
+    HOLY_OVERLOAD_POTION = {{
+        id = 15332,
+        amount = 1
+    }, {
+        id = 21630,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }},
+    OVERLOAD_SALVE = {{
+        id = 2434,
+        amount = 1
+    }, {
+        id = 2448,
+        amount = 1
+    }, {
+        id = 2452,
+        amount = 1
+    }, {
+        id = 15304,
+        amount = 1
+    }, {
+        id = 15332,
+        amount = 1
+    }, {
+        id = 21630,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }, {
+        id = 55954,
+        amount = 1
+    }},
+    SEARING_OVERLOAD_POTION = {{
+        id = 15304,
+        amount = 1
+    }, {
+        id = 15332,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }},
+    SUPREME_OVERLOAD_POTION = {{
+        id = 2436,
+        amount = 1
+    }, {
+        id = 2440,
+        amount = 1
+    }, {
+        id = 2442,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }, {
+        id = 2444,
+        amount = 1
+    }, {
+        id = 3040,
+        amount = 1
+    }, {
+        id = 15332,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }, {
+        id = 55316,
+        amount = 1
+    }, {
+        id = 55955,
+        amount = 1
+    }},
+    SUPREME_OVERLOAD_SALVE = {{
+        id = 2434,
+        amount = 1
+    }, {
+        id = 2448,
+        amount = 1
+    }, {
+        id = 2452,
+        amount = 1
+    }, {
+        id = 15304,
+        amount = 1
+    }, {
+        id = 21630,
+        amount = 1
+    }, {
+        id = 32843,
+        amount = 1
+    }, {
+        id = 33210,
+        amount = 1
+    }, {
+        id = 55956,
+        amount = 1
+    }}
+}
+
+DATA.UNFINISHEDPOTS = {
+    GUAM = 249,
+    TARROMIN = 253,
+    MARRENTIL = 251,
+    HARRALANDER = 255,
+    RANARR = 257,
+    TOADFLAX = 2998,
+    SPIRIT_WEED = 12172,
+    IRIT = 259,
+    WERLGALI = 14854,
+    AVANTOE = 261,
+    KWUARM = 263,
+    BLOODWEED = 37953,
+    SNAPDRAGON = 3000,
+    CADANTINE = 265,
+    LANTADYME = 2481,
+    DWARFWEED = 267,
+    TORSTOL = 269,
+    ARBUCK = 48211,
+    FELLSTALK = 21624
 }
 
 DATA.SANDSTONE = {
@@ -215,6 +598,9 @@ function DATA.resolve(cfg)
     local necklaceType = clean(cfg.necklaceType)
     local porterType = clean(cfg.porterType)
     local potionType = clean(cfg.potionType)
+    local combination = clean(cfg.combination)
+    local unfinishedPotions = clean(cfg.unfType)
+    local herbloreSubSkill = clean(cfg.herbloreSubSkill)
 
     local out = {
         selectedSkill = selectedSkill,
@@ -233,7 +619,10 @@ function DATA.resolve(cfg)
         EnergyType = EnergyType and DATA.ENERGY[EnergyType] or nil,
         necklaceType = necklaceType and DATA.NECKLACE[necklaceType] or nil,
         porterType = porterType,
-        potionType = potionType and DATA.POTIONS[potionType] or nil
+        potionType = potionType and DATA.POTIONS[potionType] or nil,
+        combination = combination and DATA.COMBINATIONPOTS[combination] or nil,
+        unfinishedPotions = unfinishedPotions and DATA.UNFINISHEDPOTS[unfinishedPotions] or nil,
+        herbloreSubSkill = herbloreSubSkill
     }
 
     return out

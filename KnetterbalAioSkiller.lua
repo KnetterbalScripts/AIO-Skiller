@@ -8,8 +8,8 @@ API.SetDrawTrackedSkills(true)
 
 ScriptName = "Knetterbal AIO Skiller"
 Author = "Knetterbal"
-ScriptVersion = "1.1"
-ReleaseDate = "23-08-2025"
+ScriptVersion = "1.2"
+ReleaseDate = "24-08-2025"
 
 local RES = DATA.resolve()
 
@@ -30,6 +30,9 @@ local EnergyType = RES.EnergyType
 local necklaceType = RES.necklaceType
 local porterType = RES.porterType
 local potionType = RES.potionType
+local combination = RES.combination
+local unfinishedPotions = RES.unfinishedPotions
+local herbloreSubSkill = RES.herbloreSubSkill
 
 
 
@@ -60,10 +63,9 @@ local function gameStateChecks()
     return true
 end
 
+
 local function findItemInInventory(itemId)
-    if not itemId then
-        return nil
-    end
+    if not itemId then return nil end
     local inventory = API.ReadInvArrays33()
     for i = 1, #inventory do
         if inventory[i].itemid1 == itemId then
@@ -73,39 +75,28 @@ local function findItemInInventory(itemId)
     return nil
 end
 
-local function allItemsInInventory(itemTable)
-    if not itemTable or #itemTable == 0 then
-        API.logDebug("[Herblore] Geen itemTable of lege table!")
+
+local function HasItemMin(itemId, min)
+    min = min or 1
+    local stack = API.InvStackSize(itemId) or 0
+    local count = API.InvItemcount_1(itemId) or 0
+    local amount = math.max(stack, count)
+    return amount >= min
+end
+
+local function allItemsInInventory(potionTable)
+    if not potionTable or #potionTable == 0 then
         return false
     end
-    local inventory = API.ReadInvArrays33()
-    for _, itemId in ipairs(itemTable) do
-        local found = false
-        for i = 1, #inventory do
-            if inventory[i].itemid1 == itemId then
-                found = true
-                break
-            end
-        end
-        if not found then
-           -- API.logDebug("[Herblore] Ontbrekend ingrediënt: " .. tostring(itemId))
+    for i, ingredient in ipairs(potionTable) do
+        local needed = ingredient.amount or 1
+
+        if not HasItemMin(ingredient.id, needed) then
             return false
         end
     end
-    return true
-end
 
-local function HasItemMin(item, min)
-    min = min or 1
-    local amount = 0
-    if Inventory and Inventory.GetItemAmount then
-        amount = Inventory:GetItemAmount(item) or 0
-    else
-        local count = API.InvItemcount_1(item) or 0
-        local stack = API.InvStackSize(item) or 0
-        amount = math.max(count, stack)
-    end
-    return amount >= min
+    return true
 end
 
 local function isInterfaceOpen()
@@ -172,7 +163,21 @@ local function hasMaterials()
         COOKING    = function() return findItemInInventory(selectedFish) ~= nil end,
         FIREMAKING = function() return findItemInInventory(selectedLog) ~= nil end,
         CRAFTING   = function() return craftingCases[subSkill2] and craftingCases[subSkill2]() or false end,
-        HERBLORE   = function() return allItemsInInventory(potionType) end,
+        HERBLORE = function()
+            local herbloreCases = {
+                POTIONS = function()
+                    return potionType and allItemsInInventory(potionType)
+                end,
+                COMBINATION = function()
+                    return combination and allItemsInInventory(combination)
+                end,
+                UNF = function()
+                    return unfinishedPotions and (findItemInInventory(unfinishedPotions) and findItemInInventory(227) ~= nil)
+                end
+            }
+            return herbloreCases[herbloreSubSkill] and herbloreCases[herbloreSubSkill]() or false
+        end,
+
         DIVINATION = function()
             local reqs = {
                 IV  = 45,
@@ -199,7 +204,15 @@ local function startWorking()
         COOKING    = function() if not isBusy() then Interact:Object("Range", "Cook-at") end end,
         FLETCHING  = function() if not isBusy() then Interact:Object("Fletching workbench", "Use") end end,
         FIREMAKING = function() if not isBurningLogs() then Interact:Object("Bonfire", "Add logs to") end end,
-        HERBLORE  = function() if not isBusy() then Interact:Object("Botanist's workbench", "Mix Potions") end end,
+        HERBLORE  = function()
+            if isBusy() then return end
+            local subActions = {
+                POTIONS = function() Interact:Object("Botanist's workbench", "Mix Potions") end,
+                UNF = function() API.DoAction_Inventory1(227, 0, 1, API.OFF_ACT_GeneralInterface_route) end,
+                COMBINATION = function() API.DoAction_Inventory1(32843, 0, 1, API.OFF_ACT_GeneralInterface_route) end,
+            }
+            return subActions[herbloreSubSkill] and subActions[herbloreSubSkill]()
+        end,
         DIVINATION = function() if not isBusy() then API.DoAction_Inventory1(EnergyType, 0, 1, API.OFF_ACT_GeneralInterface_route) end end,
         CRAFTING   = function()
             if isBusy() then return end

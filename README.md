@@ -20,6 +20,13 @@
 * **Divination porters**
 
 * **Herblore: Potions**
+	* Subskills:
+		* POTIONS: Makes the potions u want. checks for supplies
+		* COMBINATION POTIONS: Makes the overloads you want.
+		* UNFINISHED POTIONS: Makes all the unfinished potions you need.
+
+### Notes for Herblore/Combination pots
+- If you want to make those or  add more, you have to add the crystal flask id / have 1 in the preset.
 
 ## Configuration UI Explained
 
@@ -67,6 +74,12 @@ Here you will select stuff that you wanna do
 
 ### Divination Porter Tab
 - **Potion Type:** Select the type of potion you want to create.
+
+### Herblore Tab
+- **Sub skill:** Select from  `POTIONS`, `COMBINATION`, or `UNF`.
+- **Potion Type:** Select the type potion you want to make.
+- **Combination pots:** Select the type of combination potion you want.
+- **unfinished pots:** Select the type of herb you want to use.
 
 
 ### Notes
