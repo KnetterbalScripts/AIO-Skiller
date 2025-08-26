@@ -1,7 +1,6 @@
 local API = require("api")
 local GUI = require("Knetter AIO Skiller.gui")
 local DATA = require("Knetter AIO Skiller.data")
-local UTILS = require("utils")
 
 API.SetDrawLogs(true)
 API.SetDrawTrackedSkills(true)
