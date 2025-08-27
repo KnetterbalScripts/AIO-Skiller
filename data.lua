@@ -25,6 +25,24 @@ DATA.LOGS = {
     SHAFTS = 52
 }
 
+DATA.INK = {
+    REGULAR = {
+        { id = 55599, amount = 20 },  -- Regular ink
+        { id = 227, amount = 1 },  -- Regular ink (unf)
+        { id = 592, amount = 1 },  -- Regular ink (unf)
+    },
+        GREATER = {
+        { id = 55600, amount = 20 },  -- Regular ink
+        { id = 227, amount = 1 },  -- Regular ink (unf)
+        { id = 592, amount = 1 },  -- Regular ink (unf)
+    },
+        POWERFUL = {
+        { id = 55601, amount = 20 },  -- Regular ink
+        { id = 227, amount = 1 },  -- Regular ink (unf)
+        { id = 592, amount = 1 },  -- Regular ink (unf)
+    }
+}
+
 DATA.POTIONS = {
     -- Normale potions
     ATTACK_POTION = {{
@@ -601,6 +619,7 @@ function DATA.resolve(cfg)
     local combination = clean(cfg.combination)
     local unfinishedPotions = clean(cfg.unfType)
     local herbloreSubSkill = clean(cfg.herbloreSubSkill)
+    local inkType = clean(cfg.inkType)
 
     local out = {
         selectedSkill = selectedSkill,
@@ -622,7 +641,8 @@ function DATA.resolve(cfg)
         potionType = potionType and DATA.POTIONS[potionType] or nil,
         combination = combination and DATA.COMBINATIONPOTS[combination] or nil,
         unfinishedPotions = unfinishedPotions and DATA.UNFINISHEDPOTS[unfinishedPotions] or nil,
-        herbloreSubSkill = herbloreSubSkill
+        herbloreSubSkill = herbloreSubSkill,
+        inkType = inkType and DATA.INK[inkType] or nil
     }
 
     return out

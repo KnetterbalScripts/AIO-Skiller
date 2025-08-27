@@ -7,8 +7,8 @@ API.SetDrawTrackedSkills(true)
 
 ScriptName = "Knetterbal AIO Skiller"
 Author = "Knetterbal"
-ScriptVersion = "1.2"
-ReleaseDate = "24-08-2025"
+ScriptVersion = "1.3"
+ReleaseDate = "27-08-2025"
 
 local RES = DATA.resolve()
 
@@ -32,6 +32,7 @@ local potionType = RES.potionType
 local combination = RES.combination
 local unfinishedPotions = RES.unfinishedPotions
 local herbloreSubSkill = RES.herbloreSubSkill
+local inkType = RES.inkType
 
 
 
@@ -162,6 +163,7 @@ local function hasMaterials()
         COOKING    = function() return findItemInInventory(selectedFish) ~= nil end,
         FIREMAKING = function() return findItemInInventory(selectedLog) ~= nil end,
         CRAFTING   = function() return craftingCases[subSkill2] and craftingCases[subSkill2]() or false end,
+        OTHER = function() return inkType and allItemsInInventory(inkType) end,
         HERBLORE = function()
             local herbloreCases = {
                 POTIONS = function()
@@ -198,7 +200,7 @@ local function startWorking()
     if isInterfaceOpen() then
         return startCraft()
     end
-
+    local necroplasm = {55599, 55600, 55601}
     local actions = {
         COOKING    = function() if not isBusy() then Interact:Object("Range", "Cook-at") end end,
         FLETCHING  = function() if not isBusy() then Interact:Object("Fletching workbench", "Use") end end,
@@ -212,6 +214,7 @@ local function startWorking()
             }
             return subActions[herbloreSubSkill] and subActions[herbloreSubSkill]()
         end,
+        OTHER = function() if not isBusy() then API.DoAction_Inventory1(necroplasm, 0, 1, API.OFF_ACT_GeneralInterface_route) end end,
         DIVINATION = function() if not isBusy() then API.DoAction_Inventory1(EnergyType, 0, 1, API.OFF_ACT_GeneralInterface_route) end end,
         CRAFTING   = function()
             if isBusy() then return end
@@ -245,6 +248,7 @@ local function loadLastPreset()
         FIREMAKING = loadBanker,
         DIVINATION = loadChest,
         HERBLORE = loadChest,
+        OTHER = loadChest,
         CRAFTING   = function()
             if isBusy() then return end
             local subs = { GLASS = loadChest, FLASKS = loadChest, CUT = loadChest, ARMOR = loadChest }

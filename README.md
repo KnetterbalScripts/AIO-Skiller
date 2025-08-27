@@ -24,6 +24,9 @@
 		* POTIONS: Makes the potions u want. checks for supplies
 		* COMBINATION POTIONS: Makes the overloads you want.
 		* UNFINISHED POTIONS: Makes all the unfinished potions you need.
+* **Other**	
+	* Ghostly ink: Mixes ghostly ink for you.
+
 
 ### Notes for Herblore/Combination pots
 - If you want to make those or  add more, you have to add the crystal flask id / have 1 in the preset.
@@ -42,6 +45,7 @@ Here you will select stuff that you wanna do
 - MAKING `FLASKS/ CUT GEMS/ CRAFT ARMOR` AT FORT BANK (WORKSHOP)
 - `DIVINATION` makes `PORTERS` AT FORT BANK (WORKSHOP)
 - `HERBLORE` makes `POTIONS` AT FORT BOTANIST'S WORKBENCH
+- `OTHER` makes `GHOSTLY INK` AT FORT BANK (WORKSHOP).
 
 ### Notes for Crafting/Fletching
 - If you want to craft something with multiple options (for example dragonhide bodies,Arrow shafts or a certain bow ), you MUST craft 1 first so the script will keep crafting that item
@@ -73,7 +77,7 @@ Here you will select stuff that you wanna do
 - **Porter Type:** Select the type of porter you want to make.
 
 ### Divination Porter Tab
-- **Potion Type:** Select the type of potion you want to create.
+- **Porter Type:** Select the type of porter you want to create.
 
 ### Herblore Tab
 - **Sub skill:** Select from  `POTIONS`, `COMBINATION`, or `UNF`.
@@ -81,6 +85,8 @@ Here you will select stuff that you wanna do
 - **Combination pots:** Select the type of combination potion you want.
 - **unfinished pots:** Select the type of herb you want to use.
 
+### Others Tab
+- **Ghostly ink Type:** Select the type of ghostly ink you want to create.
 
 ### Notes
 - For Fletching and Crafting, you **must** select a sub skill for the script to work correctly.
