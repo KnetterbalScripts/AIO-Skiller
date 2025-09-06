@@ -247,7 +247,14 @@ DATA.POTIONS = {
     }, {
         id = 229,
         amount = 1
-    }} -- Primal pulp  , vial
+    }}, -- Primal pulp  , vial
+    GUTHIX_REST = {{
+        id = 97,
+        amount = 1
+    }, {
+        id = 251,
+        amount = 1
+    }}, -- Primal pulp  , vial
 
 }
 
